@@ -109,16 +109,8 @@
               </g>
             </svg>
           </button>
-          {%- assign sortLink = "/oldest" -%}
-          {%- assign sortClass = "latest" -%}
-          {%- assign sortLabel = "Latest" -%}
-          {% if page.url == "/oldest.html" -%}
-            {%- assign sortLink = "/" -%}
-            {%- assign sortClass = "oldest" -%}
-            {%- assign sortLabel = "Oldest" -%}
-          {%- endif -%}
-          <a href="{{ sortLink }}" class="sort {{ sortClass }}">
-            {{ sortLabel }} news
+          <button type="button" class="btn btn-link sort">
+            <span class="new">Latest news</span><span class="old">Oldest news</span>
             <svg width="6px" height="4px" viewBox="0 0 6 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="White" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="White-Home" transform="translate(-1190.000000, -158.000000)" fill="#000000">
@@ -130,7 +122,7 @@
                 </g>
               </g>
             </svg>
-          </a>
+          </button>
         {%- else -%}
           <a href="#" class="btn btn-link archive-link">Link to internet archive</a>
         {%- endif -%}

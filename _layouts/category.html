@@ -6,12 +6,13 @@ layout: default
   <div class="container">
     <div class="row">
       <div class="col">
-        <ul class="post-list">
+        <ul class="post-list" data-category="{{ page.category-name }}">
           {%- include post-list-header.html -%}
           {%- assign date_format = site.minima.date_format | default: "%B %-d, %Y" -%}
-          {% for post in site.categories[page.category-name] %}
+          {%- for post in site.categories[page.category-name] limit: 10 -%}
             {%- include post-list.html -%}
           {%- endfor -%}
+          {%- include list-spinner.html -%}
         </ul>
       </div>
     </div>

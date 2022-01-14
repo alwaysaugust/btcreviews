@@ -1,6 +1,8 @@
 @import "./bootstrap/bootstrap-reboot";
 @import "./bootstrap/bootstrap-grid";
 @import "./bootstrap/_buttons";
+@import "./bootstrap/_spinners";
+@import "./bootstrap/helpers/visually-hidden";
 
 $bodyFont: "Inter", sans-serif;
 
@@ -70,6 +72,13 @@ body {
 
     body.dark & {
       color: white;
+    }
+
+    &:active,
+    &:focus {
+      text-decoration: underline;
+      box-shadow: none;
+      outline: none;
     }
   }
 }
@@ -278,20 +287,34 @@ body {
     text-decoration: none;
     color: $almostBlack;
     height: 100%;
+    border-radius: 0;
 
     body.dark & {
       color: white;
       border-right-color: rgba(#DDDDDD, 0.14);
     }
 
-    &.oldest {
+    &.old {
       svg {
         transform: rotate(180deg);
       }
+
+      .old {
+        display: unset;
+      }
+
+      .new {
+        display: none;
+      }
+    }
+
+    .old {
+      display: none;
     }
 
     svg {
       margin-left: 23px;
+      transition: transform 250ms;
 
       body.dark & {
         g#White-Home {
@@ -422,6 +445,14 @@ body {
         flex: 0 0 10%;
         min-width: 10%;
       }
+    }
+
+    &.list-spinner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+      border-bottom: none;
     }
 
     a {
