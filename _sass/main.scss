@@ -96,7 +96,7 @@ body {
   background-color: white;
   z-index: 4;
 
-  @media all and (max-width: $smallMax) {
+  @media all and (max-width: $mediumMax) {
     position: sticky;
     top: 0;
     z-index: 5;
@@ -107,7 +107,7 @@ body {
   }
 
   body.layout-post & {
-    @media all and (min-width: $smallMax + 1) {
+    @media all and (min-width: $mediumMax + 1) {
       display: none;
     }
   }
@@ -286,6 +286,10 @@ body {
     top: 35px;
   }
 
+  @media all and (min-width: $smallMax + 1) and (max-width: $mediumMax) {
+    top: calc(102px);
+  }
+
   body.dark & {
     background-color: $darkBackground;
     border-bottom-color: #585858;
@@ -377,7 +381,7 @@ body {
       }
     }
 
-    @media all and (max-width: $smallMax) {
+    @media all and (max-width: $mediumMax) {
       &.mobile {
         display: flex;
       }
@@ -634,6 +638,10 @@ body {
       background-color: white;
       height: 25px;
 
+      @media all and (max-width: $mediumMax) {
+        top: calc(102px + 41px);
+      }
+
       @media all and (max-width: $smallMax) {
         display: none !important;
       }
@@ -656,6 +664,11 @@ body {
       .audio {
         flex: 0 0 10%;
         min-width: 10%;
+
+        @media all and (max-width: $mediumMax) {
+          flex: 0 0 15%;
+          min-width: 15%;
+        }
       }
     }
 
@@ -782,6 +795,11 @@ body {
         line-height: calc(22/10);
         min-width: 10%;
         flex: 0 0 10%;
+
+        @media all and (max-width: $mediumMax) {
+          min-width: 15%;
+          flex: 0 0 15%;
+        }
 
         @media all and (max-width: $smallMax) {
           min-width: unset;
