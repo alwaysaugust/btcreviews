@@ -1,15 +1,19 @@
 <div id="coinkite-banner" style="height: 35px; background-color: black; position: fixed; top: 0; left: 0; right: 0; z-index: 5;"></div>
 <header class="header">
   <div class="container">
-    <div class="row top-row">
-      {{ page.is_post }}
-      {%- if page.layout != "post" -%}
-        <div class="col-12 top">
-          <a href="/" class="logo">
-            <img src="/assets/images/bitcoin-logo-dark.png" alt="Bitcoin" class="dark" />
-            <img src="/assets/images/bitcoin-logo.png" alt="Bitcoin" class="light" />
-            <span>Bitcoin Review</span>
-          </a>
+    <div class="row top-row">      
+      <div class="col-12 top">
+        <button class="hamburger hamburger--collapse" type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+        <a href="/" class="logo">
+          <img src="/assets/images/bitcoin-logo-dark.png" alt="Bitcoin" class="dark" />
+          <img src="/assets/images/bitcoin-logo.png" alt="Bitcoin" class="light" />
+          <span>Bitcoin Review</span>
+        </a>
+        <div class="right">
           <a href="#" class="btn btn-primary submit-story">
             <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="White" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -38,7 +42,7 @@
             </svg>
           </button>
         </div>
-      {%- endif -%}
+      </div>
     </div>
   </div>
 </header>
@@ -157,6 +161,32 @@
             </svg>
           </label>
         </div>
+      </div>
+      <div class="col-12 bar mobile">
+        <div class="form">
+          <div class="form-group">
+            <select class="form-control mobile-categories">
+              <option value="" data-url="/">All Categories</option>
+              {%- for category in sortedCategories -%}
+                {%- assign cat4url = "/category/" | append: category[0] | remove:' ' | downcase -%}
+                <option data-url="{{ cat4url }}">{{ category[0] | replace: "_", " " | capitalize }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control">
+              <option value="latest">Latest News</option>
+              <option value="oldest">Oldest News</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="search" name="search" id="mobile-search" class="form-control" placeholder="Search by keyword" />
+          </div>
+        </div>
+        <button class="btn btn-link toggle">
+          <span>Advanced Search</span>
+          <span>Close</span>
+        </button>
       </div>
     </div>
   </div>

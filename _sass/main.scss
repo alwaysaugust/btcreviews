@@ -2,19 +2,27 @@
 @import "./bootstrap/bootstrap-grid";
 @import "./bootstrap/_buttons";
 @import "./bootstrap/_spinners";
+@import "./bootstrap/_forms";
 @import "./bootstrap/helpers/visually-hidden";
+@import "./hamburgers.min.scss";
 
 $bodyFont: "Inter", sans-serif;
 
 $almostBlack: #121212;
 $darkBackground: #121212;
 
+$smallMax: 767px;
+$mediumMax: 991px;
+
 body {
   font-family: $bodyFont;
   color: $almostBlack;
   font-size: 16px;
   background-color: white !important;
-  padding-top: 35px;
+  
+  @media all and (min-width: $smallMax + 1) {
+    padding-top: 35px;
+  }
 
   &.dark {
     background-color: $darkBackground !important;
@@ -88,8 +96,20 @@ body {
   background-color: white;
   z-index: 4;
 
+  @media all and (max-width: $smallMax) {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
   body.dark & {
     background-color: $darkBackground;
+  }
+
+  body.layout-post & {
+    @media all and (min-width: $smallMax + 1) {
+      display: none;
+    }
   }
 
   .top {
@@ -98,17 +118,68 @@ body {
     align-items: center;
     padding-top: 26px;
     padding-bottom: 23px;
+
+    @media all and (max-width: $smallMax) {
+      justify-content: center;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+  }
+
+  .hamburger {
+    display: none;
+    position: absolute;
+    z-index: 6;
+    left: 5px;
+    top: 3px;
+    padding: 10px;
+
+    @media all and (max-width: $smallMax) {
+      display: block;
+    }
+
+    &.is-active {
+      .hamburger-inner {
+        transform: translate3d(0, -5px, 0) rotate(-45deg)
+      }
+      .hamburger-inner::before {
+        top: 0;
+      }
+    }
+
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      width: 18px;
+      height: 2px;
+      border-radius: 0;
+    }
+
+    .hamburger-inner::before {
+      top: -5px;
+    }
+
+    .hamburger-inner::after {
+      top: -10px;
+    }
   }
 
   .logo {
     display: flex;
-    align-items: center;
-    margin-right: auto;
+    align-items: center;    
     text-decoration: none;
+
+    @media all and (min-width: $smallMax + 1) {
+      margin-right: auto;
+    }
 
     img {
       width: 53px;
       height: auto;
+
+      @media all and (max-width: $smallMax) {
+        width: 30px;
+      }
     }
 
     span {
@@ -119,8 +190,40 @@ body {
       letter-spacing: -0.55px;
       color: $almostBlack;
 
+      @media all and (max-width: $smallMax) {
+        font-size: 1rem;
+        letter-spacing: 0.3px;
+        line-height: calc(20/16);
+      }
+
       body.dark & {
         color: white;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media all and (max-width: $smallMax) {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 90%;
+      background-color: white;
+      padding: 60px 15px 0;
+      transform: translateX(-100%);
+      transition: transform 500ms;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      &.open {
+        transform: translateX(0);
       }
     }
   }
@@ -129,6 +232,12 @@ body {
     display: flex;
     align-items: center;
     margin-right: 10px;
+
+    @media all and (max-width: $smallMax) {
+      margin-right: 0;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
 
     svg {
       margin: 0 9px 0 0;
@@ -142,6 +251,10 @@ body {
   }
 
   .share {
+    @media all and (max-width: $smallMax) {
+      width: 100%;
+    }
+
     &:hover,
     body.dark & {
       svg {
@@ -165,9 +278,13 @@ body {
   border-top: 1px solid #DDDDDD;
   border-bottom: 1px solid $almostBlack;
   position: sticky;
-  top: 35px;
+  top: 62px;
   z-index: 4;
   background-color: white;
+
+  @media all and (min-width: $smallMax + 1) {
+    top: 35px;
+  }
 
   body.dark & {
     background-color: $darkBackground;
@@ -179,6 +296,96 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    &.mobile {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      .toggle {
+        position: relative;
+        font-size: 0.75rem;
+        line-height: calc(15/12);
+        font-weight: 500;
+        width: 125px;
+
+        &.open {
+          &::after {
+            transform: rotate(180deg);
+          }
+
+          span {
+            display: unset;
+
+            &:first-child {
+              display: none;
+            }
+          }
+        }
+
+        &::after {
+          content: "";
+          display: block;
+          width: 14px;
+          background-image: url("data:image/svg+xml,%3Csvg width='10px' height='6px' viewBox='0 0 10 6' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='White' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Mobile-White-Default' transform='translate(-225.000000, -77.000000)' fill='%23000000'%3E%3Cg id='Group' transform='translate(0.000000, 72.000000)'%3E%3Cg transform='translate(223.000000, 1.000000)' id='Actions-/-Navigation-/-chevron--down-/-24'%3E%3Cpolygon id='Fill' points='7 9.625 2.625 5.25 3.2375 4.6375 7 8.4 10.7625 4.6375 11.375 5.25'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+          background-position: center center;
+          background-repeat: no-repeat;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: calc(100% + 15px);
+          transition: transform 250ms;
+        }
+
+        span {
+          display: none;
+
+          &:first-child {
+            display: inline;
+          }
+        }
+      }
+
+      .form {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 500ms;
+        width: 100%;
+
+        &.open {
+          max-height: 500px;
+        }
+
+        .form-group {
+          margin-bottom: 1rem;
+
+          &:first-child {
+            margin-top: 1rem;
+          }
+        }
+
+        .form-control {
+          font-size: 0.75rem;
+          letter-spacing: -0.22px;
+          line-height: calc(26/12);
+          border: 1px solid #DDDDDD;
+          width: 100%;
+        }
+      }
+    }
+
+    @media all and (max-width: $smallMax) {
+      &.mobile {
+        display: flex;
+      }
+
+      &:not(.mobile) {
+        display: none;
+      }
+    }
   }
 
   .categories {
@@ -427,6 +634,10 @@ body {
       background-color: white;
       height: 25px;
 
+      @media all and (max-width: $smallMax) {
+        display: none !important;
+      }
+
       body.dark & {
         background-color: $darkBackground;
       }
@@ -470,6 +681,10 @@ body {
         color: white;
       }
 
+      @media all and (max-width: $smallMax) {
+        flex-wrap: wrap;
+      }
+
       &:before {
         content: "";
         background-color: transparent;
@@ -480,6 +695,11 @@ body {
         bottom: -1px;
         right: -22px;
         z-index: 1;
+
+        @media all and (max-width: $smallMax) {
+          left: 0;
+          right: 0;
+        }
       }
 
       &:hover {
@@ -522,6 +742,11 @@ body {
         flex-grow: 1;
         margin: 0;
 
+        @media all and (max-width: $smallMax) {
+          width: 100%;
+          flex: 0 0 100%;
+        }
+
         span {
           position: relative;
 
@@ -557,12 +782,25 @@ body {
         line-height: calc(22/10);
         min-width: 10%;
         flex: 0 0 10%;
+
+        @media all and (max-width: $smallMax) {
+          min-width: unset;
+          flex: unset;
+          margin-right: 0.5rem;
+        }
       }
 
       .audio {
         display: flex;
         align-items: center;
         justify-content: flex-end;
+
+        @media all and (max-width: $smallMax) {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+        }
 
         span {
           display: flex;
@@ -574,6 +812,10 @@ body {
           background-color: #EEEEEE;
           margin-right: 13px;
           transition: background-color 100ms;
+
+          @media all and (max-width: $smallMax) {
+            margin-right: 0;
+          }
         }
       }
     }
