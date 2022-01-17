@@ -296,6 +296,30 @@ body {
     border-top-color: rgba(#DDDDDD, 0.14);
   }
 
+  body.layout-post & {
+    @media all and (max-width: $smallMax) {
+      display: none;
+    }
+  }
+
+  &.search-active {
+    .categories {
+      display: none;
+    }
+
+    .btn.search {
+      margin-right: auto;
+      border-right: none;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+  }
+
   .bar {
     display: flex;
     align-items: center;
@@ -486,6 +510,40 @@ body {
     font-size: 0.625rem;
     letter-spacing: -0.18px;
     text-decoration: underline;
+  }
+
+  .search-container {
+    display: none;
+
+    .form-control {
+      border: none;
+      border-radius: 0;
+
+      body.dark & {
+        background-color: transparent;
+        color: white;
+
+        &::placeholder {
+          color: rgba(white, 0.75);
+        }
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+
+    .btn.close {
+      svg {
+        g#White-Search {
+          body.dark & {
+            fill: white;
+          }
+        }
+      }
+    }
   }
 
   .sort {
@@ -847,6 +905,10 @@ body {
     letter-spacing: -0.62px;
     line-height: calc(41/34);
     margin: 0 0 22px;
+
+    @media all and (max-width: $smallMax) {
+      font-size: 1.75rem;
+    }
   }
 
   .post-meta {
@@ -858,6 +920,12 @@ body {
     border-style: solid;
     border-width: 1px 0;
 
+    @media all and (max-width: $smallMax) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 5px 0;
+    }
+
     body.dark & {
       border-color: rgba(#DDDDDD, 0.14);
     }
@@ -868,6 +936,10 @@ body {
       font-size: 0.625rem;
       letter-spacing: -0.18px;
       line-height: calc(22/10);
+
+      @media all and (max-width: $smallMax) {
+        width: 100%;
+      }
     }
 
     .social {
@@ -878,6 +950,10 @@ body {
       margin: 0;
       padding: 11px 18px 11px 0;
       border-right: 1px solid #DDDDDD;
+
+      @media all and (max-width: $smallMax) {
+        border-right: none;
+      }
 
       body.dark & {
         border-right-color: rgba(#DDDDDD, 0.14);

@@ -114,6 +114,20 @@
               </g>
             </svg>
           </button>
+          <div class="search-container">
+            <input type="text" name="search" id="desktop-search" class="form-control" placeholder="Search by keyword" />
+            <button type="button" class="btn close">
+              <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="White" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="White-Search" transform="translate(-1041.000000, -154.000000)" fill="#121212">
+                    <g id="Actions-/-Navigation-/-close-/-24" transform="translate(1041.000000, 154.000000)">
+                      <polygon id="Fill" points="12 1.05 10.95 0 6 4.95 1.05 0 0 1.05 4.95 6 0 10.95 1.05 12 6 7.05 10.95 12 12 10.95 7.05 6"></polygon>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </button>
+          </div>
           <button type="button" class="btn btn-link sort">
             <span class="new">Latest news</span><span class="old">Oldest news</span>
             <svg width="6px" height="4px" viewBox="0 0 6 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -168,13 +182,12 @@
             <select class="form-control mobile-categories">
               <option value="" data-url="/">All Categories</option>
               {%- for category in sortedCategories -%}
-                {%- assign cat4url = "/category/" | append: category[0] | remove:' ' | downcase -%}
-                <option data-url="{{ cat4url }}">{{ category[0] | replace: "_", " " | capitalize }}</option>
+                <option value="{{ category[0] | remove:' ' | downcase }}">{{ category[0] | replace: "_", " " | capitalize }}</option>
               {%- endfor -%}
             </select>
           </div>
           <div class="form-group">
-            <select class="form-control">
+            <select class="form-control sort-order">
               <option value="latest">Latest News</option>
               <option value="oldest">Oldest News</option>
             </select>
