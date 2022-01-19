@@ -27,23 +27,25 @@ layout: default
                 </time>
               </p>
               <ul class="social">
-                <li>
-                  <a href="#">
-                    <img src="/assets/images/facebook.svg" alt="Facebook" title="Facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/assets/images/twitter.svg" alt="Twitter" title="Twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/assets/images/linkedin.svg" alt="LinkedIn" title="LinkedIn" />
-                  </a>
-                </li>
+                {% assign url_placeholder = "<url>" %}
+                {% assign text_placeholder = "<title>" %}
+                {% assign twitter_placeholder = "<twitter>" %}
+                {% assign page_url = "https://btcreviews.com" | append: page.url | uri_escape %}
+                {% for button in site.data.social-buttons %}
+                  {% assign button_url = button.url
+                    | replace: text_placeholder, page.title
+                    | replace: url_placeholder, page_url
+                    | replace: twitter_placeholder, site.twitter_username
+                    | uri_escape
+                  %}
+                  <li>
+                    <a href="{{ button_url }}" target="_blank" class="js-social-buttons">
+                      <img src="/assets/images/{{ button.svg }}" alt="{{ button.title }}" title="{{ button.title }}" />
+                    </a>
+                  </li>
+                {% endfor %}
               </ul>
-              <button type="button" class="btn btn-link">Share Link</button>
+              <button type="button" class="btn btn-link share-link">Share Link</button>
             </div>
           </header>
 

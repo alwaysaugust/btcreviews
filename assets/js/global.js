@@ -42,4 +42,35 @@
     searchToggle.classList.toggle('open');
     searchMenu.classList.toggle('open');
   });
+
+  // share modal
+  const shareModal = document.querySelector('#share-modal'),
+    shareModalButton = document.querySelector('header.header .btn.share'),
+    shareModalCopyButton = shareModal.querySelector('.btn.btn-primary');
+  shareModalButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    shareModal.classList.add('open');
+  });
+
+  shareModalCopyButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(shareModal.querySelector('input[type="text"]').value).then(function() {
+      e.target.innerText = 'Copied!';
+    }, function(err) {
+      // 
+    });
+  });
+
+  // modals
+  const modalOverlays = document.querySelectorAll('.modal-overlay');
+  modalOverlays.forEach(function(overlay) {
+    overlay.addEventListener('click', closeModal);
+    overlay.querySelector('.modal .btn-close').addEventListener('click', closeModal);
+    overlay.querySelector('.modal').addEventListener('click', function(e) { e.stopPropagation(); });
+  });
+
+  function closeModal(e) {
+    e.preventDefault();
+    document.querySelector('.modal-overlay.open').classList.remove('open');
+  }
 })();

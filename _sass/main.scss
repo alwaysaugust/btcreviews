@@ -943,39 +943,8 @@ body {
     }
 
     .social {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      margin: 0;
-      padding: 11px 18px 11px 0;
       border-right: 1px solid #DDDDDD;
-
-      @media all and (max-width: $smallMax) {
-        border-right: none;
-      }
-
-      body.dark & {
-        border-right-color: rgba(#DDDDDD, 0.14);
-      }
-
-      li {
-        padding-right: 12px;
-
-        &:last-child {
-          padding-right: 0;
-        }
-
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 35px;
-          height: 35px;
-          border-radius: 50%;
-          background-color: #EEEEEE;
-        }
-      }
+      padding: 11px 18px 11px 0;
     }
   }
 
@@ -1022,5 +991,126 @@ body {
         }
       }
     }
+  }
+}
+
+.social {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+
+  @media all and (max-width: $smallMax) {
+    border-right: none;
+  }
+
+  body.dark & {
+    border-right-color: rgba(#DDDDDD, 0.14);
+  }
+
+  li {
+    padding-right: 12px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #EEEEEE;
+    }
+  }
+}
+
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 250ms;
+  pointer-events: none;
+  z-index: 15;
+
+  &.open {
+    opacity: 1;
+    pointer-events: unset;
+  }
+
+  .modal {
+    background-color: white;
+    position: relative;
+    padding: 53px 43px;
+    width: 511px;
+    border-radius: 5px;
+
+    body.dark & {
+      background-color: $almostBlack;
+    }
+
+    .btn.btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      svg {
+        g#White-Search {
+          body.dark & {
+            fill: white;
+          }
+        }
+      }
+    }
+
+    h3 {
+      font-size: 1.625rem;
+      font-weight: 700;
+      letter-spacing: -0.47px;
+      margin: 0 0 35px;
+    }
+
+    input {
+      font-size: 0.75rem;
+      padding: 0.625rem 0.75rem;
+
+      body.dark & {
+        background-color: $almostBlack;
+        color: white;
+      }
+    }
+  }
+}
+
+#share-modal {
+  .social {
+    margin: 0 0 35px;
+
+    li {
+      a {
+        width: 70px;
+        height: 70px;
+
+        img {
+          width: 26px;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .btn.btn-primary {
+    width: 100%;
   }
 }
