@@ -1,16 +1,20 @@
 (function(){
   // theme switch
-  const toggle = document.querySelector('.bottom-header .theme-toggle input');
-  if (toggle) {
-    toggle.addEventListener('change', function(e) {
-      document.querySelector('body').classList.toggle('dark');
-      localStorage.setItem('theme', this.checked ? 'dark' : 'light');
+  const toggles = document.querySelectorAll('.theme-toggle input');
+  if (toggles.length) {
+    toggles.forEach(function(toggle) {
+      toggle.addEventListener('change', function(e) {
+        document.querySelector('body').classList.toggle('dark');
+        localStorage.setItem('theme', this.checked ? 'dark' : 'light');
+      });
     });
   }
 
   // default theme
   if (document.querySelector('body').classList.contains("dark")) {
-    toggle.checked = true;
+    toggles.forEach(function(toggle) {
+      toggle.checked = true;
+    });
   }
 
   // scroll
@@ -58,6 +62,37 @@
       e.target.innerText = 'Copied!';
     }, function(err) {
       // 
+    });
+  });
+
+  // submit story modal
+  const submitModal = document.querySelector('#submit-modal'),
+    submitModalButton = document.querySelector('header.header .btn.submit-story'),
+    submitStoryForm = submitModal.querySelector('form'),
+    formResponse = submitModal.querySelector('.response'),
+    submitStoryFormButton = submitModal.querySelector('.btn.btn-primary');
+  submitModalButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    submitModal.classList.add('open');
+  });
+
+  submitStoryForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitStoryFormButton.setAttribute('disabled', 'disabled');
+    let data = new FormData(submitStoryForm);
+    fetch(event.target.action, {
+      method: "post",
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      submitStoryFormButton.removeAttribute('disabled');
+      formResponse.innerHTML = "Thanks for your submission!";
+      submitStoryForm.reset();
+    }).catch(error => {
+      submitStoryFormButton.removeAttribute('disabled');
+      formResponse.innerHTML = "Sorry, there was an error. Please try again later.";
     });
   });
 

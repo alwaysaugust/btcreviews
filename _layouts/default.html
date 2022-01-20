@@ -8,7 +8,7 @@
     <script type="text/javascript">
       (function(){
         const theme = localStorage.getItem('theme');
-        if (theme && theme == "dark") {
+        if ((!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) || (theme && theme == "dark")) {
           document.querySelector('body').classList.add('dark');
           document.querySelector('body').style.backgroundColor = '#121212';
         }

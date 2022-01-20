@@ -44,6 +44,52 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="submit-modal">
+  <div class="modal">
+    <button type="button" class="btn btn-link btn-close">
+      <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="White" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="White-Search" transform="translate(-1041.000000, -154.000000)" fill="#121212">
+            <g id="Actions-/-Navigation-/-close-/-24" transform="translate(1041.000000, 154.000000)">
+              <polygon id="Fill" points="12 1.05 10.95 0 6 4.95 1.05 0 0 1.05 4.95 6 0 10.95 1.05 12 6 7.05 10.95 12 12 10.95 7.05 6"></polygon>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </button>
+    <h3>Submit Story</h3>
+    <form action="https://formspree.io/f/xrgjeyjz" method="post">
+      <div class="row">
+        <div class="col-md mb-3">
+          <input type="text" name="first_name" placeholder="First name" class="form-control" />
+        </div>
+        <div class="col-md mb-3">
+          <input type="text" name="last_name" placeholder="Last name" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <input type="email" name="email" placeholder="Email address" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <input type="text" name="article_title" placeholder="Article title" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <input type="url" name="article_link" placeholder="Article link" class="form-control" required />
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <button type="submit" class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </span>
+            <span>Submit Story</span>
+          </button>
+          <p class="response"></p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
 <script type="text/javascript" src="/assets/js/fuse.js"></script>
 <script type="text/javascript" src="/assets/js/global.js"></script>
 {%- if page.layout != "post" -%}
